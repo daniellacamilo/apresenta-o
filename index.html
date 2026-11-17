@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DANIELLA CAMILO // PORTFOLIO_OS.EXE</title>
+
+  <!-- Google Fonts: Anton & Oswald (Display Condensada), Space Mono (Terminal/OS) e Inter (Leitura) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            beigeBg: '#D7C3A1',
+            beigeDark: '#C8B28B',
+            beigeLight: '#E5D5B7',
+            indigoRetro: '#4E54A3',
+            indigoDeep: '#3B429F',
+            inkDark: '#1E1E1E',
+            brownDark: '#2C261E',
+            orangeRetro: '#F28B30',
+            tealRetro: '#5299A3',
+            offWhite: '#F5F1E8',
+          },
+          fontFamily: {
+            display: ['Anton', 'Oswald', 'Impact', 'sans-serif'],
+            condensed: ['Oswald', 'Anton', 'sans-serif'],
+            mono: ['"Space Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            retro: '4px 4px 0px #1E1E1E',
+            'retro-lg': '6px 6px 0px #1E1E1E',
+            'retro-sm': '2px 2px 0px #1E1E1E',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-beige: #D7C3A1;
+      --bg-beige-dark: #C8B28B;
+      --indigo-primary: #4E54A3;
+      --indigo-deep: #3B429F;
+      --ink-dark: #1E1E1E;
+      --orange-accent: #F28B30;
+      --teal-accent: #5299A3;
+      --off-white: #F5F1E8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-beige);
+      color: var(--ink-dark);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      background-image: radial-gradient(rgba(44, 38, 30, 0.07) 1px, transparent 0);
+      background-size: 18px 18px;
+    }
+
+    /* Moldura dupla externa fiel à estética Y2K/90s */
+    .outer-frame {
+      border: 3px solid #9D6BFF;
+      outline: 3px solid #F5F1E8;
+      outline-offset: -6px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Tipografia Display Condensada em Caixa Alta */
+    .title-condensed {
+      font-family: 'Anton', 'Oswald', sans-serif;
+      letter-spacing: 0.02em;
+      line-height: 0.94;
+      text-transform: uppercase;
+    }
+
+    /* Efeito de scanlines na tela do monitor CRT */
+    .crt-scanlines {
+      background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.22) 50%
+      );
+      background-size: 100% 3px;
+    }
+
+    /* Brilho sutil de tubo CRT */
+    .crt-vignette {
+      box-shadow: inset 0 0 18px rgba(15, 18, 45, 0.65);
+    }
+
+    /* Bordas pretas 2px e sombras duras */
+    .retro-box {
+      border: 2px solid #1E1E1E;
+      box-shadow: 4px 4px 0px #1E1E1E;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .retro-box-hover:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #1E1E1E;
+    }
+
+    .retro-btn {
+      border: 2px solid #1E1E1E;
+      box-shadow: 3px 3px 0px #1E1E1E;
+      transition: all 0.12s ease;
+      cursor: pointer;
+    }
+
+    .retro-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px #1E1E1E;
+    }
+
+    @keyframes floatCursor {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-4px, -5px); }
+    }
+
+    .floating-cursor {
+      animation: floatCursor 3s ease-in-out infinite;
+    }
+
+    /* Scrollbar retrô */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #C8B28B;
+      border-left: 2px solid #1E1E1E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4E54A3;
+      border: 2px solid #1E1E1E;
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="selection:bg-indigoRetro selection:text-offWhite">
+
+  <!-- Input de arquivo oculto reutilizável para upload individual de fotos -->
+  <input type="file" id="single-photo-input" accept="image/*" class="hidden" />
+
+  <div class="outer-frame flex flex-col justify-between">
+
+    <!-- ========================================================= -->
+    <!-- BARRA DE TAREFAS SUPERIOR (OS TASKBAR)                     -->
+    <!-- ========================================================= -->
+    <header class="sticky top-0 z-40 bg-beigeBg/95 backdrop-blur-sm border-b-2 border-inkDark px-3 sm:px-8 py-2.5">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2.5">
+        <!-- Identificação do Sistema -->
+        <a href="#introducao" class="flex items-center gap-2.5 group">
+          <div class="w-7 h-7 bg-indigoRetro border-2 border-inkDark flex items-center justify-center shadow-retro-sm group-hover:bg-orangeRetro transition-colors">
+            <span class="font-mono text-offWhite font-bold text-xs">DC</span>
+          </div>
+          <span class="font-mono font-bold text-xs sm:text-sm tracking-wider uppercase text-inkDark">
+            DANIELLA_CAMILO <span class="text-indigoRetro">OS</span>
+          </span>
+        </a>
+
+        <!-- Navegação entre as 5 Seções -->
+        <nav aria-label="Navegação Principal" class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1">
+          <button data-nav="interesses" class="nav-pill retro-btn bg-offWhite hover:bg-indigoRetro hover:text-offWhite px-2.5 py-1 rounded text-xs font-mono font-bold uppercase whitespace-nowrap">
+            01.Interesses
+          </button>
+          <button data-nav="formacao" class="nav-pill retro-btn bg-offWhite hover:bg-indigoRetro hover:text-offWhite px-2.5 py-1 rounded text-xs font-mono font-bold uppercase whitespace-nowrap">
+            02.Formação
+          </button>
+          <button data-nav="trajetoria" class="nav-pill retro-btn bg-offWhite hover:bg-indigoRetro hover:text-offWhite px-2.5 py-1 rounded text-xs font-mono font-bold uppercase whitespace-nowrap">
+            03.Trajetória
+          </button>
+          <button data-nav="projetos" class="nav-pill retro-btn bg-offWhite hover:bg-indigoRetro hover:text-offWhite px-2.5 py-1 rounded text-xs font-mono font-bold uppercase whitespace-nowrap">
+            04.Projetos
+          </button>
+          <button data-nav="motivacoes" class="nav-pill retro-btn bg-offWhite hover:bg-indigoRetro hover:text-offWhite px-2.5 py-1 rounded text-xs font-mono font-bold uppercase whitespace-nowrap">
+            05.Motivações
+          </button>
+        </nav>
+
+        <!-- Botão do Gerenciador Rápido de Fotos do PDF + Relógio -->
+        <div class="flex items-center gap-2">
+          <button
+            id="open-photo-manager-btn"
+            type="button"
+            class="retro-btn bg-orangeRetro text-inkDark font-mono font-bold text-[11px] sm:text-xs px-2.5 py-1 rounded uppercase flex items-center gap-1.5 hover:brightness-105"
+            title="Carregar as 5 fotos originais do PDF de uma vez"
+          >
+            <span>📷 Fotos do PDF</span>
+          </button>
+          <div class="hidden xl:flex items-center gap-2 bg-beigeDark border-2 border-inkDark px-3 py-1 rounded font-mono text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-tealRetro border border-inkDark animate-pulse"></span>
+            <span id="os-clock">SYS // 00:00</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- BARRA DE NAVEGAÇÃO LATERAL COM BOLINHAS (ESTILO Y2K)      -->
+    <!-- ========================================================= -->
+    <aside aria-label="Indicador Lateral de Seções" class="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3.5">
+      <button data-dot="0" data-target="introducao" title="Introdução" class="side-dot w-5 h-5 rounded-full border-2 border-inkDark transition-all duration-300 bg-indigoRetro scale-110 shadow-retro-sm"></button>
+      <button data-dot="1" data-target="interesses" title="01. Interesses" class="side-dot w-5 h-5 rounded-full border-2 border-inkDark/70 transition-all duration-300 bg-indigoRetro/80 hover:scale-110"></button>
+      <button data-dot="2" data-target="formacao" title="02. Formação" class="side-dot w-5 h-5 rounded-full border-2 border-inkDark/55 transition-all duration-300 bg-indigoRetro/65 hover:scale-110"></button>
+      <button data-dot="3" data-target="trajetoria" title="03. Trajetória Profissional" class="side-dot w-5 h-5 rounded-full border-2 border-inkDark/45 transition-all duration-300 bg-indigoRetro/50 hover:scale-110"></button>
+      <button data-dot="4" data-target="projetos" title="04. Projetos" class="side-dot w-5 h-5 rounded-full border-2 border-inkDark/35 transition-all duration-300 bg-indigoRetro/35 hover:scale-110"></button>
+      <button data-dot="5" data-target="motivacoes" title="05. Motivações" class="side-dot w-5 h-5 rounded-full border-2 border-inkDark/25 transition-all duration-300 bg-indigoRetro/25 hover:scale-110"></button>
+    </aside>
+
+    <!-- ========================================================= -->
+    <!-- CONTEÚDO PRINCIPAL SPA                                    -->
+    <!-- ========================================================= -->
+    <main class="flex-grow">
+
+      <!-- ======================================================= -->
+      <!-- 0. INTRODUÇÃO (HERO SECTION COM FOTO NO MONITOR CRT)    -->
+      <!-- ======================================================= -->
+      <section id="introducao" class="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 pt-8 pb-16 lg:py-14 min-h-[86vh] flex items-center">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <!-- Coluna Esquerda: Círculo Azul-Violeta + Monitor CRT Bege Original -->
+          <div class="lg:col-span-6 relative flex flex-col items-center justify-center">
+            <div class="w-[310px] h-[310px] sm:w-[430px] sm:h-[430px] xl:w-[475px] xl:h-[475px] rounded-full bg-indigoRetro relative flex items-center justify-center shadow-inner">
+              
+              <!-- SVG Isométrico do Monitor CRT Bege (Tela limpa original com texto retrô interativo) -->
+              <svg id="crt-monitor-svg" viewBox="0 0 520 500" class="w-[108%] h-[108%] max-w-none drop-shadow-[6px_8px_0px_rgba(30,30,30,0.35)] select-none cursor-pointer" role="img" aria-label="Ilustração isométrica de monitor CRT vintage com tela azul-violeta" title="Clique na tela do monitor para alternar o status do sistema">
+                <defs>
+                  <!-- ClipPath exato da curvatura interna da tela CRT -->
+                  <clipPath id="crt-screen-clip">
+                    <path d="M 248 162 Q 320 147 392 135 Q 397 222 392 304 Q 320 322 248 340 Q 243 251 248 162 Z" />
+                  </clipPath>
+                  <!-- Padrão sutil de scanlines CRT -->
+                  <pattern id="svg-scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
+                    <line x1="0" y1="0" x2="4" y2="0" stroke="#1E1E1E" stroke-width="1" opacity="0.14" />
+                  </pattern>
+                </defs>
+
+                <!-- Base / Suporte Giratório Inferior -->
+                <polygon points="115,415 245,455 375,405 245,370" fill="#B59F78" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="115,415 245,455 245,468 115,428" fill="#8F7A56" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="245,455 375,405 375,418 245,468" fill="#766343" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                
+                <!-- Pescoço do Suporte -->
+                <polygon points="175,385 245,408 325,378 255,358" fill="#9E8963" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="175,385 245,408 245,426 175,402" fill="#8A7551" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="245,408 325,378 325,395 245,426" fill="#6F5D3E" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+
+                <!-- Carcaça Traseira do Monitor CRT -->
+                <polygon points="62,102 225,68 355,95 190,132" fill="#D8C5A3" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="62,102 190,132 190,295 62,262" fill="#BFA982" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="85,105 222,76 315,96 185,125" fill="#C9B48E" opacity="0.7"/>
+
+                <!-- Carcaça Traseira Inferior -->
+                <polygon points="82,267 190,295 190,368 82,338" fill="#B29B73" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <line x1="95" y1="285" x2="145" y2="298" stroke="#6E5D40" stroke-width="2"/>
+                <line x1="95" y1="295" x2="145" y2="308" stroke="#6E5D40" stroke-width="2"/>
+                <line x1="95" y1="305" x2="145" y2="318" stroke="#6E5D40" stroke-width="2"/>
+
+                <!-- Lateral Esquerda do Bezel Frontal -->
+                <polygon points="152,115 205,132 205,405 152,385" fill="#C2AC85" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- Topo do Bezel Frontal -->
+                <polygon points="152,115 375,78 432,94 205,132" fill="#D5C19E" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- Face Frontal do Monitor -->
+                <polygon points="205,132 432,94 432,356 205,405" fill="#B39D75" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+
+                <!-- Moldura Interna Escura da Tela -->
+                <polygon points="232,155 404,125 404,312 232,352" fill="#3B3326" stroke="#1E1E1E" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="232,155 248,162 248,340 232,352" fill="#292319"/>
+                <polygon points="232,155 404,125 392,135 248,162" fill="#4A4030"/>
+
+                <!-- Tela CRT Azul-Violeta Limpa (Design Original da Imagem de Referência) -->
+                <g clip-path="url(#crt-screen-clip)">
+                  <path d="M 248 162 Q 320 147 392 135 Q 397 222 392 304 Q 320 322 248 340 Q 243 251 248 162 Z"
+                        fill="#4E54A3" />
+                  <!-- Scanlines sutis dentro da tela -->
+                  <rect x="240" y="130" width="165" height="215" fill="url(#svg-scanlines)" />
+
+                  <!-- Texto Retrô Sutil no canto superior esquerdo da tela em perspectiva isométrica -->
+                  <g transform="translate(260, 184) skewY(-10.5)">
+                    <text id="crt-screen-primary-text" x="0" y="0" fill="#E8E4F8" opacity="0.82" font-family="'Space Mono', monospace" font-size="9.5" letter-spacing="0.4">
+                      こんにちはイム悲しい
+                    </text>
+                    <text id="crt-screen-secondary-text" x="0" y="16" fill="#5299A3" opacity="0" font-family="'Space Mono', monospace" font-size="8.5" font-weight="bold">
+                      > DANIELLA_OS READY_
+                    </text>
+                  </g>
+
+                  <!-- Reflexo sutil de vidro CRT -->
+                  <path d="M 342 148 Q 370 143 386 141 Q 388 175 385 205 Q 367 168 342 148 Z"
+                        fill="#FFFFFF" opacity="0.14" />
+                </g>
+
+                <!-- Contorno Externo da Tela CRT -->
+                <path d="M 248 162 Q 320 147 392 135 Q 397 222 392 304 Q 320 322 248 340 Q 243 251 248 162 Z"
+                      fill="none" stroke="#1E1E1E" stroke-width="2.5" />
+
+                <!-- Controles Inferiores do Monitor -->
+                <polygon points="235,367 312,351 312,368 235,385" fill="#3B3326" stroke="#1E1E1E" stroke-width="2"/>
+                <polygon points="241,370 264,365 264,376 241,381" fill="#C9B48E" stroke="#1E1E1E" stroke-width="1.5"/>
+                <polygon points="269,364 291,359 291,370 269,375" fill="#C9B48E" stroke="#1E1E1E" stroke-width="1.5"/>
+                <circle id="crt-power-led" cx="301" cy="363" r="3.5" fill="#5299A3" stroke="#1E1E1E" stroke-width="1.2"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Barra Superior + Título DANIELLA CAMILO + Barra de Busca -->
+          <div class="lg:col-span-6 flex flex-col justify-center space-y-5 lg:pr-8">
+            
+            <!-- Barra Superior de Janela -->
+            <div class="flex items-stretch border-2 border-inkDark bg-indigoRetro shadow-retro w-full max-w-xl">
+              <div class="w-11 sm:w-12 bg-beigeBg border-r-2 border-inkDark flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 24 24" class="w-6 h-6 stroke-inkDark" fill="none" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" />
+                  <line x1="3" y1="3" x2="21" y2="21" />
+                  <line x1="21" y1="3" x2="3" y2="21" />
+                </svg>
+              </div>
+              <div class="px-4 py-2.5 flex items-center justify-between w-full">
+                <span class="font-sans font-bold text-xs sm:text-sm tracking-[0.12em] text-offWhite uppercase">
+                  PORTFOLIO_DANIELLA_CAMILO.EXE
+                </span>
+                <span class="font-mono text-[10px] text-beigeLight hidden sm:inline">[RIO • ES]</span>
+              </div>
+            </div>
+
+            <!-- Título Gigante Condensado + Subtítulo -->
+            <div class="space-y-2.5 pt-1">
+              <h1 class="title-condensed text-5xl sm:text-7xl xl:text-[5.2rem] text-indigoRetro tracking-tight select-none">
+                DANIELLA<br />CAMILO
+              </h1>
+              <p class="font-sans font-bold text-xs sm:text-sm tracking-[0.12em] text-indigoDeep uppercase max-w-lg">
+                JORNALISTA &amp; DESENVOLVEDORA FRONT-END
+              </p>
+            </div>
+
+            <!-- Breve Apresentação Conectando Comunicação & Tecnologia -->
+            <p class="font-sans text-sm sm:text-base text-brownDark max-w-xl leading-relaxed bg-offWhite/75 border-2 border-inkDark p-4 rounded-lg shadow-retro-sm">
+              Da curiosidade com aparelhos de som na infância às redações de TV e ao código front-end: uno <strong>narrativa jornalística</strong>, <strong>experiência do usuário</strong> e <strong>desenvolvimento web</strong> com propósito social e cultural.
+            </p>
+
+            <!-- Botões de Ação -->
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="#trajetoria" class="retro-btn bg-indigoRetro text-offWhite font-mono font-bold text-xs sm:text-sm px-5 py-2.5 rounded uppercase tracking-wider hover:bg-indigoDeep">
+                Ver Trajetória &rarr;
+              </a>
+              <a href="#projetos" class="retro-btn bg-offWhite text-inkDark font-mono font-bold text-xs sm:text-sm px-5 py-2.5 rounded uppercase tracking-wider hover:bg-beigeLight">
+                Explorar Projetos
+              </a>
+            </div>
+
+            <!-- Barra de Busca Inferior Estilo Navegador Retrô -->
+            <div class="pt-3 sm:pt-4 relative max-w-md">
+              <!-- Botão Laranja 'X' sobreposto -->
+              <button
+                id="search-clear-btn"
+                type="button"
+                title="Restaurar URL padrão ou limpar busca"
+                class="retro-btn absolute -top-1 -left-3 z-20 w-9 h-9 rounded-full bg-orangeRetro text-inkDark flex items-center justify-center font-bold hover:brightness-105"
+              >
+                <svg viewBox="0 0 24 24" class="w-4 h-4 stroke-inkDark" fill="none" stroke-width="3" stroke-linecap="round">
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                </svg>
+              </button>
+
+              <!-- Container Azul-Violeta Arredondado -->
+              <div class="bg-indigoRetro border-2 border-inkDark rounded-2xl p-3 sm:p-3.5 shadow-retro relative">
+                <form id="retro-search-form" class="bg-offWhite border-2 border-inkDark rounded-full px-4 py-2 flex items-center justify-between gap-2">
+                  <input
+                    id="retro-search-input"
+                    type="text"
+                    value="WWW.DANIELLACAMILO.DEV"
+                    aria-label="Endereço do navegador ou busca rápida"
+                    class="w-full bg-transparent font-sans font-bold text-xs sm:text-sm tracking-wider text-indigoRetro placeholder-indigoRetro/60 uppercase focus:outline-none"
+                  />
+                  <button type="submit" aria-label="Navegar ou Pesquisar" class="text-inkDark hover:text-indigoRetro transition-colors shrink-0">
+                    <svg viewBox="0 0 24 24" class="w-5 h-5 stroke-current" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="7" />
+                      <line x1="20" y1="20" x2="16.2" y2="16.2" />
+                    </svg>
+                  </button>
+                </form>
+
+                <!-- Feedback instantâneo -->
+                <div id="search-feedback" class="hidden mt-2 px-2 font-mono text-[11px] text-offWhite flex items-center justify-between">
+                  <span id="search-feedback-text">Buscando no portfólio...</span>
+                  <button type="button" id="search-jump-btn" class="underline font-bold text-orangeRetro hover:text-offWhite">
+                    Ir para seção &darr;
+                  </button>
+                </div>
+              </div>
+
+              <!-- Cursor Ciano (#5299A3) no canto inferior direito -->
+              <svg viewBox="0 0 32 32" class="floating-cursor w-8 h-8 absolute -bottom-4 -right-3 z-20 drop-shadow-[2px_2px_0px_#1E1E1E] pointer-events-none" aria-hidden="true">
+                <path d="M4 3 L27 14 L17 18 L13 28 Z" fill="#5299A3" stroke="#1E1E1E" stroke-width="2.2" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cursor Pixelado Clássico no Canto Inferior Direito -->
+        <div class="hidden sm:block absolute bottom-4 right-5 pointer-events-none select-none" aria-hidden="true">
+          <svg width="42" height="54" viewBox="0 0 14 18" shape-rendering="crispEdges">
+            <path d="M0 0h2v14h2v-2h2v4h2v2h2v-2h2v-4h2v-2h-4V8h2V6h-2V4h-2V2H8V0H0z" fill="#3B429F"/>
+            <path d="M1 1h1v11h1v-1h1v-1h2v3h1v2h1v-2H7v-3h3V9H8V7H6V5H4V3H2V1H1z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Barra de Status do Sistema -->
+      <div class="border-y-2 border-inkDark bg-indigoRetro text-offWhite py-2 px-4 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 font-mono text-xs tracking-wider">
+          <span>C:\USERS\DANIELLA_CAMILO\PITCH_PORTFOLIO.BAT</span>
+          <span class="hidden sm:inline">// JORNALISMO (UFES) • ADS (UVA) • FRONT-END &amp; CULTURA</span>
+          <span id="active-section-indicator" class="bg-orangeRetro text-inkDark font-bold px-2 py-0.5 border border-inkDark">
+            SEÇÃO ATIVA: INTRODUÇÃO
+          </span>
+        </div>
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- 01. SEÇÃO INTERESSES (COLAGEM PÁGINA 2 + CARDS)         -->
+      <!-- ======================================================= -->
+      <section id="interesses" class="fade-in-up max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-16 sm:py-20">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span class="inline-block font-mono text-xs font-bold uppercase tracking-widest bg-orangeRetro text-inkDark border-2 border-inkDark px-3 py-1 shadow-retro-sm mb-3">
+              MÓDULO 01 // INTERESSES.EXE
+            </span>
+            <h2 class="title-condensed text-4xl sm:text-6xl text-indigoRetro">
+              INTERESSES &amp; UNIVERSO CRIATIVO
+            </h2>
+          </div>
+          <button
+            type="button"
+            data-upload-slot="interesses"
+            class="retro-btn bg-offWhite hover:bg-orangeRetro text-inkDark font-mono font-bold text-xs px-3.5 py-2 rounded uppercase self-start md:self-auto"
+          >
+            📷 Carregar Foto Original da Colagem
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <!-- Espaço Visual da Colagem (Página 2 do PDF) -->
+          <div class="lg:col-span-7 retro-box bg-offWhite rounded-lg overflow-hidden flex flex-col">
+            <div class="bg-indigoRetro border-b-2 border-inkDark px-4 py-2.5 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-orangeRetro border border-inkDark"></span>
+                <span class="font-mono text-xs font-bold text-offWhite uppercase">MURAL_REFERENCIAS_P02.BMP</span>
+              </div>
+              <span class="font-mono text-[10px] text-beigeLight">MODA • MÚSICA • RIO</span>
+            </div>
+
+            <!-- Container da Foto / Colagem Interativa -->
+            <div id="slot-interesses-visual" class="relative flex-grow min-h-[320px] sm:min-h-[380px] bg-beigeLight">
+              <!-- Preenchido via JS -->
+            </div>
+          </div>
+
+          <!-- Cards de Conteúdo Exato do PDF -->
+          <div class="lg:col-span-5 flex flex-col justify-between gap-5">
+            <!-- Bloco 1: Hobbies -->
+            <article class="retro-box retro-box-hover bg-offWhite rounded-lg overflow-hidden">
+              <div class="bg-orangeRetro border-b-2 border-inkDark px-4 py-2 flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-inkDark">HOBBIES_CULTURA.SYS</span>
+                <span class="font-mono text-xs font-bold">[01]</span>
+              </div>
+              <div class="p-5 sm:p-6 space-y-3">
+                <h3 class="title-condensed text-2xl sm:text-3xl text-indigoRetro">
+                  HOBBIES: MODA, MÚSICA, FILMES, VIDEOCLIPES E NOVELAS
+                </h3>
+                <p class="font-sans text-sm text-brownDark leading-relaxed">
+                  Da costura artesanal na máquina Singer vintage e escolha de tecidos às trilhas sonoras, estética pop (Madonna) e dramaturgia televisiva brasileira que inspiram meu olhar visual no front-end.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="font-mono text-xs font-bold bg-beigeBg border border-inkDark px-2.5 py-0.5 rounded">🧵 Moda &amp; Costura</span>
+                  <span class="font-mono text-xs font-bold bg-beigeBg border border-inkDark px-2.5 py-0.5 rounded">🎵 Música &amp; Videoclipes</span>
+                  <span class="font-mono text-xs font-bold bg-beigeBg border border-inkDark px-2.5 py-0.5 rounded">🎬 Filmes &amp; Novelas</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Bloco 2: Blog, cultura, comunidade e artes -->
+            <article class="retro-box retro-box-hover bg-offWhite rounded-lg overflow-hidden">
+              <div class="bg-tealRetro border-b-2 border-inkDark px-4 py-2 flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-inkDark">COMUNIDADE_ARTES.DLL</span>
+                <span class="font-mono text-xs font-bold">[02]</span>
+              </div>
+              <div class="p-5 sm:p-6 space-y-3">
+                <h3 class="title-condensed text-2xl sm:text-3xl text-indigoRetro">
+                  BLOG, CULTURA, COMUNIDADE E ARTES
+                </h3>
+                <p class="font-sans text-sm text-brownDark leading-relaxed">
+                  Vivência intensa na cultura popular carioca — do samba da Estação Primeira de Mangueira às arquibancadas do Maracanã torcendo pelo Flamengo, sempre valorizando laços familiares, escrita e expressão artística.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  <span class="font-mono text-xs font-bold bg-beigeBg border border-inkDark px-2.5 py-0.5 rounded">🥁 Mangueira</span>
+                  <span class="font-mono text-xs font-bold bg-beigeBg border border-inkDark px-2.5 py-0.5 rounded">⚽ Maracanã / Flamengo</span>
+                  <span class="font-mono text-xs font-bold bg-beigeBg border border-inkDark px-2.5 py-0.5 rounded">✍️ Blog &amp; Artes</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- 02. SEÇÃO FORMAÇÃO (CENA TV RETRÔ PÁGINA 3 + CURSOS)    -->
+      <!-- ======================================================= -->
+      <section id="formacao" class="fade-in-up bg-beigeDark/60 border-y-2 border-inkDark py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+              <span class="inline-block font-mono text-xs font-bold uppercase tracking-widest bg-tealRetro text-inkDark border-2 border-inkDark px-3 py-1 shadow-retro-sm mb-3">
+                MÓDULO 02 // C:\FORMACAO\ACADEMICO
+              </span>
+              <h2 class="title-condensed text-4xl sm:text-6xl text-indigoRetro">
+                FORMAÇÃO ACADÊMICA
+              </h2>
+            </div>
+            <button
+              type="button"
+              data-upload-slot="formacao"
+              class="retro-btn bg-offWhite hover:bg-orangeRetro text-inkDark font-mono font-bold text-xs px-3.5 py-2 rounded uppercase self-start md:self-auto"
+            >
+              📷 Carregar Foto Original (Cena TV/PC)
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Moldura Visual da Página 3 (Cena clássica de TV diante do computador antigo) -->
+            <div class="lg:col-span-5 retro-box bg-offWhite rounded-lg overflow-hidden">
+              <div class="bg-indigoRetro border-b-2 border-inkDark px-4 py-2.5 flex items-center justify-between">
+                <span class="font-mono text-xs font-bold text-offWhite uppercase">ARQUIVO_TV_COMPUTADOR_P03.MPG</span>
+                <span class="font-mono text-[10px] text-orangeRetro font-bold">● REC</span>
+              </div>
+              <div id="slot-formacao-visual" class="relative h-[280px] sm:h-[320px] bg-brownDark">
+                <!-- Preenchido via JS -->
+              </div>
+            </div>
+
+            <!-- Formações Exatas do PDF -->
+            <div class="lg:col-span-7 space-y-6 relative before:content-[''] before:absolute before:left-5 before:top-4 before:bottom-4 before:w-1 before:bg-inkDark">
+              
+              <!-- Formação 1: Jornalismo pela Ufes -->
+              <div class="relative pl-14">
+                <div class="absolute left-2 top-5 w-7 h-7 rounded-full bg-indigoRetro border-2 border-inkDark flex items-center justify-center shadow-retro-sm">
+                  <span class="font-mono text-xs font-bold text-offWhite">01</span>
+                </div>
+                <article class="retro-box retro-box-hover bg-offWhite rounded-lg p-6">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <span class="font-mono text-xs font-bold bg-tealRetro text-inkDark border border-inkDark px-2.5 py-0.5 rounded">
+                      GRADUAÇÃO CONCLUÍDA
+                    </span>
+                    <span class="font-mono text-xs font-bold text-indigoRetro">COMUNICAÇÃO SOCIAL</span>
+                  </div>
+                  <h3 class="title-condensed text-2xl sm:text-3xl text-inkDark mt-1">
+                    Formação em Jornalismo pela Ufes
+                  </h3>
+                  <p class="font-mono text-xs sm:text-sm font-bold text-indigoRetro mt-1">
+                    Universidade Federal do Espírito Santo (UFES)
+                  </p>
+                  <p class="font-sans text-sm text-brownDark mt-3 leading-relaxed">
+                    Formação completa em apuração, produção audiovisual, telejornalismo, redação multiplataforma e comunicação pública com foco em impacto social.
+                  </p>
+                </article>
+              </div>
+
+              <!-- Formação 2: ADS pela Veiga de Almeida -->
+              <div class="relative pl-14">
+                <div class="absolute left-2 top-5 w-7 h-7 rounded-full bg-orangeRetro border-2 border-inkDark flex items-center justify-center shadow-retro-sm">
+                  <span class="font-mono text-xs font-bold text-inkDark">02</span>
+                </div>
+                <article class="retro-box retro-box-hover bg-offWhite rounded-lg p-6">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <span class="font-mono text-xs font-bold bg-orangeRetro text-inkDark border border-inkDark px-2.5 py-0.5 rounded">
+                      EM ANDAMENTO
+                    </span>
+                    <span class="font-mono text-xs font-bold text-indigoRetro">TECNOLOGIA DA INFORMAÇÃO</span>
+                  </div>
+                  <h3 class="title-condensed text-2xl sm:text-3xl text-inkDark mt-1">
+                    Estudante de Análise e Desenvolvimento de Sistemas pela Veiga de Almeida
+                  </h3>
+                  <p class="font-mono text-xs sm:text-sm font-bold text-indigoRetro mt-1">
+                    Universidade Veiga de Almeida (UVA)
+                  </p>
+                  <p class="font-sans text-sm text-brownDark mt-3 leading-relaxed">
+                    Transição e aprofundamento em engenharia de software, lógica de programação, desenvolvimento web front-end, bancos de dados e arquitetura de sistemas.
+                  </p>
+                </article>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- 03. SEÇÃO TRAJETÓRIA PROFISSIONAL (PÁGINA 4 DO PDF)     -->
+      <!-- ======================================================= -->
+      <section id="trajetoria" class="fade-in-up max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-16 sm:py-20">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span class="inline-block font-mono text-xs font-bold uppercase tracking-widest bg-indigoRetro text-offWhite border-2 border-inkDark px-3 py-1 shadow-retro-sm mb-3">
+              MÓDULO 03 // TRAJETORIA_LOGS.SYS
+            </span>
+            <h2 class="title-condensed text-4xl sm:text-6xl text-indigoRetro">
+              TRAJETÓRIA PROFISSIONAL
+            </h2>
+          </div>
+          <button
+            type="button"
+            data-upload-slot="trajetoria"
+            class="retro-btn bg-offWhite hover:bg-orangeRetro text-inkDark font-mono font-bold text-xs px-3.5 py-2 rounded uppercase self-start md:self-auto"
+          >
+            📷 Carregar Foto Original (TV Ufes)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Coluna Esquerda: Moldura da Foto da Página 4 (Daniella na TV Ufes + Janela Libras) -->
+          <div class="lg:col-span-5 retro-box bg-offWhite rounded-lg overflow-hidden">
+            <div class="bg-indigoRetro border-b-2 border-inkDark px-4 py-2.5 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-tealRetro border border-inkDark"></span>
+                <span class="font-mono text-xs font-bold text-offWhite uppercase">TV_UFES_BROADCAST_P04.TV</span>
+              </div>
+              <span class="font-mono text-[10px] text-beigeLight">LIBRAS ON</span>
+            </div>
+            <div id="slot-trajetoria-visual" class="relative h-[290px] sm:h-[320px] bg-tealRetro/20">
+              <!-- Preenchido via JS -->
+            </div>
+            <div class="p-4 bg-beigeLight/70 border-t-2 border-inkDark font-mono text-xs text-inkDark">
+              <strong>Ponte Comunicação &rarr; Tech:</strong> Experiência em televisão pública, atendimento ao cliente e desenvolvimento front-end.
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Lista Interativa das 7 Experiências do PDF -->
+          <div class="lg:col-span-7 space-y-4">
+            <!-- Botões/Cards de todas as 7 etapas do PDF -->
+            <div id="trajetoria-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+
+            <!-- Janela de Inspeção da Etapa Selecionada -->
+            <div class="retro-box bg-offWhite rounded-lg overflow-hidden mt-4">
+              <div class="bg-inkDark px-4 py-2 flex items-center justify-between">
+                <span id="trajetoria-detail-header" class="font-mono text-xs font-bold text-orangeRetro uppercase">
+                  DETALHES_EXPERIENCIA.TXT
+                </span>
+                <span class="font-mono text-[10px] text-tealRetro">SELECIONE UM CARD ACIMA</span>
+              </div>
+              <div id="trajetoria-detail-body" class="p-5 sm:p-6 space-y-2.5"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- 04. SEÇÃO PROJETOS (PÁGINA 5 DO PDF)                    -->
+      <!-- ======================================================= -->
+      <section id="projetos" class="fade-in-up bg-beigeDark/60 border-y-2 border-inkDark py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+              <span class="inline-block font-mono text-xs font-bold uppercase tracking-widest bg-orangeRetro text-inkDark border-2 border-inkDark px-3 py-1 shadow-retro-sm mb-3">
+                MÓDULO 04 // A:\PROJETOS_DISK
+              </span>
+              <h2 class="title-condensed text-4xl sm:text-6xl text-indigoRetro">
+                PROJETOS &amp; REPORTAGENS
+              </h2>
+            </div>
+            <button
+              type="button"
+              data-upload-slot="projetos"
+              class="retro-btn bg-offWhite hover:bg-orangeRetro text-inkDark font-mono font-bold text-xs px-3.5 py-2 rounded uppercase self-start md:self-auto"
+            >
+              📷 Carregar Foto Original (Entrevista TV Ufes)
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <!-- Moldura Visual da Página 5 (Daniella entrevistando pesquisador com mapa do Brasil no monitor) -->
+            <div class="lg:col-span-6 retro-box bg-offWhite rounded-lg overflow-hidden flex flex-col">
+              <div class="bg-indigoRetro border-b-2 border-inkDark px-4 py-2.5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-orangeRetro border border-inkDark"></span>
+                  <span class="font-mono text-xs font-bold text-offWhite uppercase">GRAVACAO_ESTUDIO_P05.RAW</span>
+                </div>
+                <span class="font-mono text-[10px] text-beigeLight">JORNALISMO DE DADOS</span>
+              </div>
+              <div id="slot-projetos-visual" class="relative flex-grow min-h-[290px] sm:min-h-[340px] bg-offWhite">
+                <!-- Preenchido via JS -->
+              </div>
+            </div>
+
+            <!-- Cards dos 2 Projetos Exatos do PDF -->
+            <div class="lg:col-span-6 flex flex-col justify-between gap-6">
+              
+              <!-- Projeto 1: "A Dimensão Política do Rap" -->
+              <article class="retro-box retro-box-hover bg-offWhite rounded-lg overflow-hidden flex flex-col justify-between">
+                <div>
+                  <div class="bg-indigoRetro border-b-2 border-inkDark px-4 py-2.5 flex items-center justify-between">
+                    <span class="font-mono text-xs font-bold text-offWhite">DISK_01 // CULTURA &amp; POLÍTICA</span>
+                    <span class="font-mono text-[10px] bg-orangeRetro text-inkDark font-bold px-2 py-0.5 border border-inkDark rounded">PROJETO</span>
+                  </div>
+                  <div class="p-6 space-y-3">
+                    <h3 class="title-condensed text-3xl text-inkDark">
+                      Projeto &ldquo;A Dimensão Política do Rap&rdquo;
+                    </h3>
+                    <p class="font-sans text-sm text-brownDark leading-relaxed">
+                      Investigação cultural e jornalística sobre o rap como instrumento de denúncia social, afirmação identitária, resistência periférica e participação política da juventude negra.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                      <span class="font-mono text-xs bg-beigeLight border border-inkDark px-2.5 py-0.5 rounded">Hip-Hop &amp; Sociedade</span>
+                      <span class="font-mono text-xs bg-beigeLight border border-inkDark px-2.5 py-0.5 rounded">Pesquisa Cultural</span>
+                      <span class="font-mono text-xs bg-beigeLight border border-inkDark px-2.5 py-0.5 rounded">Narrativa</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="px-6 py-3 bg-beigeBg/50 border-t-2 border-inkDark flex justify-between items-center">
+                  <span class="font-mono text-xs font-bold text-indigoRetro">ARQUIVO_RAP.DOC</span>
+                  <button type="button" data-project-modal="rap" class="retro-btn bg-indigoRetro text-offWhite font-mono font-bold text-xs px-3.5 py-1.5 rounded uppercase">
+                    Inspecionar Detalhes
+                  </button>
+                </div>
+              </article>
+
+              <!-- Projeto 2: Reportagem sobre cirurgia bariátrica -->
+              <article class="retro-box retro-box-hover bg-offWhite rounded-lg overflow-hidden flex flex-col justify-between">
+                <div>
+                  <div class="bg-tealRetro border-b-2 border-inkDark px-4 py-2.5 flex items-center justify-between">
+                    <span class="font-mono text-xs font-bold text-inkDark">DISK_02 // SAÚDE &amp; TELEJORNALISMO</span>
+                    <span class="font-mono text-[10px] bg-offWhite text-inkDark font-bold px-2 py-0.5 border border-inkDark rounded">REPORTAGEM</span>
+                  </div>
+                  <div class="p-6 space-y-3">
+                    <h3 class="title-condensed text-3xl text-inkDark">
+                      Reportagem sobre cirurgia bariátrica
+                    </h3>
+                    <p class="font-sans text-sm text-brownDark leading-relaxed">
+                      Produção audiovisual e reportagem especial abordando aspectos médicos, acompanhamento multidisciplinar, saúde pública e qualidade de vida de pacientes submetidos à cirurgia bariátrica.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                      <span class="font-mono text-xs bg-beigeLight border border-inkDark px-2.5 py-0.5 rounded">TV Ufes</span>
+                      <span class="font-mono text-xs bg-beigeLight border border-inkDark px-2.5 py-0.5 rounded">Saúde Pública</span>
+                      <span class="font-mono text-xs bg-beigeLight border border-inkDark px-2.5 py-0.5 rounded">Apuração &amp; Entrevista</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="px-6 py-3 bg-beigeBg/50 border-t-2 border-inkDark flex justify-between items-center">
+                  <span class="font-mono text-xs font-bold text-indigoRetro">REPORTAGEM_SAUDE.MPG</span>
+                  <button type="button" data-project-modal="bariatrica" class="retro-btn bg-orangeRetro text-inkDark font-mono font-bold text-xs px-3.5 py-1.5 rounded uppercase">
+                    Inspecionar Detalhes
+                  </button>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- 05. SEÇÃO MOTIVAÇÕES (MANIFESTO PÁGINA 6 DO PDF)        -->
+      <!-- ======================================================= -->
+      <section id="motivacoes" class="fade-in-up max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-16 sm:py-20">
+        <div class="mb-10">
+          <span class="inline-block font-mono text-xs font-bold uppercase tracking-widest bg-tealRetro text-inkDark border-2 border-inkDark px-3 py-1 shadow-retro-sm mb-3">
+            MÓDULO 05 // MOTIVACOES_MANIFESTO.TXT
+          </span>
+          <h2 class="title-condensed text-4xl sm:text-6xl text-indigoRetro">
+            MOTIVAÇÕES &amp; PROPÓSITO
+          </h2>
+        </div>
+
+        <!-- Terminal / Banner Gigante com os 7 Pilares Exatos da Página 6 do PDF -->
+        <div class="retro-box bg-indigoRetro text-offWhite rounded-lg overflow-hidden mb-8">
+          <div class="bg-inkDark px-4 py-2.5 flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-orangeRetro">C:\DANIELLA\PILARES_CORE.SYS</span>
+            <span class="font-mono text-[11px] text-tealRetro">7 VALORES CARREGADOS</span>
+          </div>
+          <div class="p-6 sm:p-10 text-center space-y-4">
+            <p class="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-beigeLight">
+              O QUE MOVE MINHA JORNADA NO JORNALISMO E NA TECNOLOGIA:
+            </p>
+            <h3 class="title-condensed text-3xl sm:text-5xl lg:text-6xl text-offWhite leading-tight tracking-wide">
+              DIVERSIDADE, TECNOLOGIA, MENTORIA, PLURALIDADE, QUESTÕES SOCIAIS, CULTURA E ATUALIDADE
+            </h3>
+          </div>
+        </div>
+
+        <!-- Cards Interativos Detalhando Cada Um dos 7 Pilares -->
+        <div id="motivacoes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10"></div>
+
+        <!-- Barra de Contato & Links -->
+        <div class="retro-box bg-offWhite rounded-lg p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-1.5 text-center md:text-left">
+            <h3 class="title-condensed text-3xl text-indigoRetro">
+              VAMOS CONECTAR COMUNICAÇÃO E CÓDIGO?
+            </h3>
+            <p class="font-sans text-sm text-brownDark">
+              Daniella Camilo • Jornalista (Ufes) &amp; Estudante de ADS (Veiga de Almeida) • Desenvolvedora Front-End
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="https://daniellacamilo.github.io/portfolio_tjs13/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="retro-btn bg-indigoRetro text-offWhite font-mono font-bold text-xs px-4 py-2.5 rounded uppercase"
+            >
+              Portfólio GitHub &nearr;
+            </a>
+            <button
+              id="open-photo-manager-btn-footer"
+              type="button"
+              class="retro-btn bg-orangeRetro text-inkDark font-mono font-bold text-xs px-4 py-2.5 rounded uppercase"
+            >
+              📷 Gerenciar Fotos do PDF
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- RODAPÉ E BARRA DE STATUS DO SISTEMA                       -->
+    <!-- ========================================================= -->
+    <footer class="border-t-2 border-inkDark bg-beigeDark px-4 sm:px-8 py-5">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs text-inkDark">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 bg-indigoRetro text-offWhite font-bold border border-inkDark">OK</span>
+          <span>DANIELLA CAMILO • </span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#introducao" class="underline font-bold hover:text-indigoRetro">Topo &uarr;</a>
+          <span>&copy; 2026 DANIELLA CAMILO</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL 1: GERENCIADOR DAS 5 FOTOS DO PDF                   -->
+  <!-- ========================================================= -->
+  <div
+    id="photo-manager-modal"
+    role="dialog"
+    aria-modal="true"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-inkDark/75 backdrop-blur-xs p-4"
+  >
+    <div class="retro-box bg-offWhite w-full max-w-3xl rounded-lg overflow-hidden">
+      <div class="bg-indigoRetro border-b-2 border-inkDark px-4 py-3 flex items-center justify-between">
+        <span class="font-mono text-xs font-bold text-offWhite uppercase">
+          📷 GERENCIADOR_FOTOS_PDF.EXE — SUBSTITUIÇÃO INSTANTÂNEA
+        </span>
+        <button
+          id="close-photo-manager-btn"
+          type="button"
+          class="retro-btn w-7 h-7 bg-orangeRetro text-inkDark font-mono font-bold text-sm flex items-center justify-center rounded"
+        >
+          X
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 space-y-5 max-h-[82vh] overflow-y-auto">
+        <p class="font-sans text-sm text-brownDark leading-relaxed">
+          Cada seção já possui uma representação visual fiel às páginas do <strong>PITCH (1).pdf</strong>. Caso deseje carregar os arquivos de imagem originais do seu computador (salvos localmente no navegador via <code>localStorage</code>), selecione abaixo:
+        </p>
+
+        <div id="photo-slots-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+
+        <div class="pt-4 border-t-2 border-inkDark flex flex-wrap items-center justify-between gap-3">
+          <button
+            id="reset-all-photos-btn"
+            type="button"
+            class="retro-btn bg-offWhite hover:bg-orangeRetro text-inkDark font-mono font-bold text-xs px-4 py-2 rounded uppercase"
+          >
+            Restaurar Ilustrações Padrão
+          </button>
+          <button
+            id="done-photo-manager-btn"
+            type="button"
+            class="retro-btn bg-indigoRetro text-offWhite font-mono font-bold text-xs px-5 py-2 rounded uppercase"
+          >
+            Concluir &amp; Visualizar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL 2: DETALHES DOS PROJETOS (PÁGINA 5 DO PDF)          -->
+  <!-- ========================================================= -->
+  <div
+    id="project-detail-modal"
+    role="dialog"
+    aria-modal="true"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-inkDark/75 backdrop-blur-xs p-4"
+  >
+    <div class="retro-box bg-offWhite w-full max-w-xl rounded-lg overflow-hidden">
+      <div class="bg-indigoRetro border-b-2 border-inkDark px-4 py-3 flex items-center justify-between">
+        <span id="project-modal-header" class="font-mono text-xs font-bold text-offWhite uppercase">
+          PROJETO.EXE
+        </span>
+        <button
+          id="close-project-modal-btn"
+          type="button"
+          class="retro-btn w-7 h-7 bg-orangeRetro text-inkDark font-mono font-bold text-sm flex items-center justify-center rounded"
+        >
+          X
+        </button>
+      </div>
+      <div id="project-modal-body" class="p-6 space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT SPA: DADOS DO PDF, VISUALIZADORES & INTERAÇÃO  -->
+  <!-- ========================================================= -->
+  <script>
+    /**
+     * ============================================================================
+     * 1. DADOS EXTRAÍDOS INTEGRALMENTE DO PDF 'PITCH (1).pdf'
+     * ============================================================================
+     */
+    const pdfContent = {
+      trajetoria: [
+        {
+          id: "tv-ufes-justica",
+          title: "TV Ufes e TV Justiça",
+          tag: "JORNALISMO & TV",
+          badgeColor: "bg-indigoRetro text-offWhite",
+          period: "Comunicação Pública",
+          description:
+            "Atuação em produção, apuração, reportagem e gravações externas na TV Ufes e veiculações para a TV Justiça, desenvolvendo comunicação acessível, pautas sociais e linguagem audiovisual."
+        },
+        {
+          id: "empresa-software",
+          title: "Empresa de Desenvolvimento de Software",
+          tag: "TECNOLOGIA",
+          badgeColor: "bg-tealRetro text-inkDark",
+          period: "Ambiente Tech",
+          description:
+            "Vivência no ciclo de produtos digitais e desenvolvimento de software, integrando visão centrada no usuário, comunicação clara entre equipes e boas práticas de engenharia."
+        },
+        {
+          id: "customer-experience",
+          title: "Customer Experience - Atendimento",
+          tag: "EXPERIÊNCIA DO USUÁRIO",
+          badgeColor: "bg-orangeRetro text-inkDark",
+          period: "CX & Relacionamento",
+          description:
+            "Escuta ativa, empatia e resolução estratégica de demandas dos usuários — base essencial para criar interfaces intuitivas e acessíveis no desenvolvimento front-end."
+        },
+        {
+          id: "comunidades-tech",
+          title: "Comunidades de Tecnologia",
+          tag: "NETWORKING & MENTORIA",
+          badgeColor: "bg-indigoDeep text-offWhite",
+          period: "Ecossistema Tech",
+          description:
+            "Participação ativa em comunidades de tecnologia, compartilhando aprendizados, incentivando a diversidade na área de TI e fortalecendo redes de apoio."
+        },
+        {
+          id: "pretalab",
+          title: "Pretalab",
+          tag: "FORMAÇÃO TECH",
+          badgeColor: "bg-orangeRetro text-inkDark",
+          period: "Mulheres Negras na Tech",
+          description:
+            "Formação e conexão na Pretalab, iniciativa que impulsiona mulheres negras na tecnologia por meio de capacitação técnica, mentoria e fortalecimento profissional."
+        },
+        {
+          id: "bootcamp-generation",
+          title: "Bootcamp Generation",
+          tag: "DESENVOLVIMENTO WEB",
+          badgeColor: "bg-tealRetro text-inkDark",
+          period: "Imersão Prática",
+          description:
+            "Treinamento intensivo focado em desenvolvimento web, lógica de programação, trabalho em equipe ágil, metodologias de mercado e habilidades comportamentais."
+        },
+        {
+          id: "mprj-frontend",
+          title: "Desenvolvedora estagiária Front-End no MPRJ",
+          tag: "ESTÁGIO FRONT-END",
+          badgeColor: "bg-indigoRetro text-offWhite",
+          period: "Ministério Público do RJ",
+          description:
+            "Desenvolvimento de interfaces web responsivas, acessíveis e funcionais como estagiária Front-End no Ministério Público do Estado do Rio de Janeiro (MPRJ)."
+        }
+      ],
+
+      projetosDetalhes: {
+        rap: {
+          header: "PROJETO_DIMENSAO_POLITICA_DO_RAP.EXE",
+          title: 'Projeto "A Dimensão Política do Rap"',
+          category: "Cultura, Sociedade & Comunicação",
+          summary:
+            "Estudo e produção jornalística dedicada a analisar o papel histórico, social e político do movimento Hip-Hop e do Rap brasileiro.",
+          highlights: [
+            "Análise das letras como crônica social das periferias e enfrentamento ao racismo estrutural.",
+            "Diálogo entre expressão artística, juventude, cidadania e ocupação dos espaços públicos.",
+            "Articulação entre pesquisa acadêmica em Jornalismo (Ufes) e produção cultural."
+          ]
+        },
+        bariatrica: {
+          header: "REPORTAGEM_CIRURGIA_BARIATRICA.MPG",
+          title: "Reportagem sobre cirurgia bariátrica",
+          category: "Telejornalismo & Saúde Pública",
+          summary:
+            "Reportagem televisiva produzida para a TV Ufes abordando os critérios médicos, o preparo psicológico e o acompanhamento multidisciplinar na cirurgia bariátrica.",
+          highlights: [
+            "Entrevistas com especialistas da área da saúde e relatos humanizados.",
+            "Explicação didática sobre qualidade de vida, prevenção e atendimento pelo sistema de saúde.",
+            "Roteiro, apuração, gravação externa e edição voltados à informação de utilidade pública."
+          ]
+        }
+      },
+
+      motivacoesPilares: [
+        {
+          title: "DIVERSIDADE",
+          icon: "✊🏾",
+          color: "bg-orangeRetro text-inkDark",
+          desc: "Ampliar a presença de mulheres negras na tecnologia e na comunicação, construindo espaços mais representativos."
+        },
+        {
+          title: "TECNOLOGIA",
+          icon: "💻",
+          color: "bg-indigoRetro text-offWhite",
+          desc: "Utilizar o desenvolvimento Front-End e ferramentas digitais para criar soluções acessíveis, funcionais e criativas."
+        },
+        {
+          title: "MENTORIA",
+          icon: "🤝",
+          color: "bg-tealRetro text-inkDark",
+          desc: "Aprender com quem veio antes e abrir caminhos para quem está começando na transição de carreira para TI."
+        },
+        {
+          title: "PLURALIDADE",
+          icon: "🌈",
+          color: "bg-indigoDeep text-offWhite",
+          desc: "Valorizar múltiplas trajetórias — unindo a bagagem do Jornalismo e CX ao raciocínio lógico da programação."
+        },
+        {
+          title: "QUESTÕES SOCIAIS",
+          icon: "📢",
+          color: "bg-orangeRetro text-inkDark",
+          desc: "Olhar crítico e comprometido com impacto social, cidadania, inclusão digital e direitos humanos."
+        },
+        {
+          title: "CULTURA",
+          icon: "🎶",
+          color: "bg-tealRetro text-inkDark",
+          desc: "Celebrar a música, o samba, a moda, o audiovisual e as expressões populares como fontes de inovação."
+        },
+        {
+          title: "ATUALIDADE",
+          icon: "📡",
+          color: "bg-indigoRetro text-offWhite",
+          desc: "Manter o olhar atento de jornalista sobre o mundo contemporâneo, novas linguagens e tendências tecnológicas."
+        }
+      ],
+
+      photoSlotsMeta: [
+        {
+          key: "interesses",
+          page: "Página 2 — Interesses",
+          label: "Colagem: Máquina Singer, Mangueira, Maracanã, tecidos, selfies e família no Rio"
+        },
+        {
+          key: "formacao",
+          page: "Página 3 — Formação",
+          label: "Cena retrô de TV/novela diante de um monitor de computador antigo"
+        },
+        {
+          key: "trajetoria",
+          page: "Página 4 — Trajetória Profissional",
+          label: "Daniella Camilo na TV Ufes com arranjo floral/frutas e intérprete de Libras"
+        },
+        {
+          key: "projetos",
+          page: "Página 5 — Projetos",
+          label: "Daniella com microfone TV Ufes entrevistando pesquisador com mapa do Brasil"
+        }
+      ]
+    };
+
+    /**
+     * ============================================================================
+     * 2. COMPOSIÇÕES VISUAIS FIÉIS ÀS FOTOS DO PDF (FALLBACK RICO + UPLOAD)
+     * ============================================================================
+     */
+    const defaultVisualIllustrations = {
+      // Foto 2 (Página 2): Colagem Interesses (Singer, Mangueira, Maracanã/Flamengo, Tecidos, Selfies e Família no Rio)
+      interesses: `
+        <div class="w-full h-full grid grid-cols-3 grid-rows-2 gap-1.5 p-2 bg-[#A63429]">
+          <!-- 1. Máquina de Costura Singer Vintage -->
+          <div class="bg-[#D8CEBE] border-2 border-inkDark rounded p-2 flex flex-col justify-between relative overflow-hidden">
+            <span class="font-mono text-[9px] font-bold bg-offWhite border border-inkDark px-1.5 py-0.5 self-start">SINGER VINTAGE</span>
+            <div class="text-center my-auto">
+              <div class="text-2xl sm:text-3xl">🧵</div>
+              <p class="font-mono text-[10px] font-bold text-inkDark mt-1">Costura &amp; Tesoura Dourada</p>
+            </div>
+            <div class="h-2 w-full bg-[#C93B3B] rounded-xs"></div>
+          </div>
+
+          <!-- 2. Bandeira da Mangueira -->
+          <div class="bg-gradient-to-br from-[#1D7A46] via-[#E85D9E] to-[#1D7A46] border-2 border-inkDark rounded p-2 flex flex-col justify-between text-offWhite">
+            <span class="font-mono text-[9px] font-bold bg-inkDark/80 px-1.5 py-0.5 self-start">VERDE &amp; ROSA</span>
+            <div class="text-center my-auto">
+              <div class="text-2xl sm:text-3xl">🥁</div>
+              <p class="font-display text-sm sm:text-base tracking-wider drop-shadow">MANGUEIRA</p>
+            </div>
+            <span class="font-mono text-[9px] text-center opacity-90">Samba &amp; Cultura</span>
+          </div>
+
+          <!-- 3. Maracanã / Flamengo -->
+          <div class="bg-gradient-to-b from-[#1E1E1E] via-[#C92A2A] to-[#F5F1E8] border-2 border-inkDark rounded p-2 flex flex-col justify-between">
+            <span class="font-mono text-[9px] font-bold bg-offWhite text-inkDark border border-inkDark px-1.5 py-0.5 self-start">MARACANÃ</span>
+            <div class="text-center my-auto bg-offWhite/90 border border-inkDark rounded py-1 px-1">
+              <div class="text-xl sm:text-2xl">⚽✌️</div>
+              <p class="font-mono text-[10px] font-bold text-inkDark">Torcida Rubro-Negra</p>
+            </div>
+            <span class="font-mono text-[9px] font-bold text-inkDark text-center">Rio de Janeiro</span>
+          </div>
+
+          <!-- 4. Rolos de Tecidos (Dourado, Vinho, Branco) -->
+          <div class="bg-[#E5D5B7] border-2 border-inkDark rounded p-2 flex flex-col justify-between">
+            <span class="font-mono text-[9px] font-bold bg-offWhite border border-inkDark px-1.5 py-0.5 self-start">ATELIÊ</span>
+            <div class="flex justify-center gap-1.5 my-auto h-14 items-end">
+              <div class="w-4 h-12 bg-[#D4A017] border border-inkDark rounded-t"></div>
+              <div class="w-4 h-14 bg-[#7A1C24] border border-inkDark rounded-t"></div>
+              <div class="w-4 h-11 bg-[#F5F1E8] border border-inkDark rounded-t"></div>
+            </div>
+            <p class="font-mono text-[9px] font-bold text-center text-inkDark">Moda &amp; Tecidos</p>
+          </div>
+
+          <!-- 5. Selfies (Bobs no cabelo & Bucket Hat Madonna) -->
+          <div class="bg-indigoRetro text-offWhite border-2 border-inkDark rounded p-2 flex flex-col justify-between">
+            <span class="font-mono text-[9px] font-bold bg-orangeRetro text-inkDark px-1.5 py-0.5 self-start">ESTILO POP</span>
+            <div class="text-center my-auto">
+              <div class="text-2xl">👒✨</div>
+              <p class="font-mono text-[10px] font-bold mt-1">Madonna &amp; Autocuidado</p>
+            </div>
+            <span class="font-mono text-[9px] text-beigeLight text-center">Música &amp; Videoclipes</span>
+          </div>
+
+          <!-- 6. Família no Rio de Janeiro com Pão de Açúcar -->
+          <div class="bg-gradient-to-b from-[#8EC5FC] to-[#E0C3FC] border-2 border-inkDark rounded p-2 flex flex-col justify-between">
+            <span class="font-mono text-[9px] font-bold bg-offWhite text-inkDark border border-inkDark px-1.5 py-0.5 self-start">FAMÍLIA • RJ</span>
+            <div class="text-center my-auto">
+              <div class="text-2xl">🏔️👨🏾‍👩🏾‍👧🏾‍👦🏾</div>
+              <p class="font-mono text-[10px] font-bold text-inkDark mt-1">Pão de Açúcar</p>
+            </div>
+            <span class="font-mono text-[9px] font-bold text-inkDark text-center">Raízes &amp; Afeto</span>
+          </div>
+        </div>
+      `,
+
+      // Foto 3 (Página 3): Cena clássica de novela/TV com óculos, blazer cinza diante de monitor antigo
+      formacao: `
+        <div class="w-full h-full relative bg-gradient-to-br from-[#544B3D] via-[#7A6E5B] to-[#3B3326] flex items-center justify-center p-4 overflow-hidden">
+          <svg viewBox="0 0 360 240" class="w-full h-full">
+            <!-- Fundo de redação/escritório anos 90 -->
+            <rect width="360" height="240" fill="#635847"/>
+            <rect x="85" y="15" width="130" height="175" fill="#8C7E68" stroke="#3B3326" stroke-width="2"/>
+            <line x1="0" y1="22" x2="360" y2="22" stroke="#3B3326" stroke-width="4"/>
+            <line x1="0" y1="32" x2="360" y2="32" stroke="#3B3326" stroke-width="4"/>
+
+            <!-- Monitor CRT em primeiro plano à esquerda -->
+            <path d="M 0 15 L 88 28 L 82 155 L 0 165 Z" fill="#C9B99F" stroke="#1E1E1E" stroke-width="2"/>
+            <rect x="0" y="185" width="145" height="55" fill="#B5A48B" stroke="#1E1E1E" stroke-width="2"/>
+
+            <!-- Personagem Jornalista/Analista com óculos e blazer cinza -->
+            <g transform="translate(175, 42)">
+              <!-- Cabelo preso -->
+              <ellipse cx="64" cy="36" rx="28" ry="30" fill="#3D2B1F"/>
+              <!-- Rosto -->
+              <ellipse cx="56" cy="44" rx="21" ry="26" fill="#D9A78B"/>
+              <!-- Óculos anos 90 -->
+              <ellipse cx="47" cy="40" rx="8" ry="5.5" fill="none" stroke="#2C261E" stroke-width="1.8"/>
+              <ellipse cx="64" cy="39" rx="7" ry="5" fill="none" stroke="#2C261E" stroke-width="1.8"/>
+              <line x1="55" y1="39.5" x2="57" y2="39.5" stroke="#2C261E" stroke-width="1.8"/>
+              <!-- Expressão concentrada -->
+              <path d="M 49 56 Q 55 55 60 56" stroke="#8C4A3E" stroke-width="2" fill="none"/>
+
+              <!-- Camisa branca e Blazer cinza -->
+              <path d="M 15 112 Q 55 76 115 108 L 135 198 L -45 198 Z" fill="#595B61" stroke="#1E1E1E" stroke-width="2"/>
+              <polygon points="48,74 72,74 62,118 42,112" fill="#F5F1E8" stroke="#1E1E1E" stroke-width="1.5"/>
+            </g>
+
+            <!-- Marca d'água estilo TV aberta no canto inferior direito -->
+            <circle cx="326" cy="208" r="14" fill="none" stroke="#F5F1E8" stroke-width="1.8" opacity="0.65"/>
+            <rect x="318" y="201" width="16" height="14" rx="3" fill="none" stroke="#F5F1E8" stroke-width="1.5" opacity="0.65"/>
+            <circle cx="326" cy="208" r="4" fill="#F5F1E8" opacity="0.65"/>
+          </svg>
+          <div class="crt-scanlines absolute inset-0 pointer-events-none"></div>
+          <div class="absolute top-2.5 left-2.5 bg-inkDark/75 text-offWhite font-mono text-[10px] px-2 py-0.5 rounded">
+            JORNALISMO &amp; SISTEMAS • ARQUIVO RETRÔ
+          </div>
+        </div>
+      `,
+
+      // Foto 4 (Página 4): Daniella Camilo na TV Ufes com arranjo floral/frutas, lower-third e intérprete de Libras
+      trajetoria: `
+        <div class="w-full h-full relative bg-gradient-to-tr from-[#3B8EA5] via-[#6EC1D6] to-[#98D8E8] overflow-hidden flex items-center justify-center">
+          <svg viewBox="0 0 380 240" class="w-full h-full">
+            <!-- Mural artístico colorido ao fundo (Azul, Amarelo, Vermelho) -->
+            <rect width="380" height="240" fill="#5BB5D1"/>
+            <circle cx="165" cy="35" r="14" fill="#D94E4E"/>
+            <ellipse cx="195" cy="95" rx="95" ry="22" transform="rotate(-12 195 95)" fill="none" stroke="#F2C94C" stroke-width="4"/>
+            <path d="M 30 160 Q 110 40 210 150" fill="none" stroke="#2B5B84" stroke-width="4"/>
+
+            <!-- Daniella Camilo Sorrindo -->
+            <g transform="translate(72, 32)">
+              <!-- Cabelo -->
+              <ellipse cx="62" cy="54" rx="34" ry="38" fill="#1E1614"/>
+              <!-- Arranjo floral e frutas na cabeça -->
+              <circle cx="42" cy="18" r="11" fill="#C92A42"/>
+              <circle cx="56" cy="26" r="9" fill="#F5CBD6"/>
+              <circle cx="32" cy="30" r="8" fill="#D8B4E2"/>
+              <ellipse cx="22" cy="22" rx="7" ry="3" transform="rotate(-30 22 22)" fill="#F2C94C"/>
+
+              <!-- Rosto -->
+              <ellipse cx="62" cy="56" rx="25" ry="30" fill="#6E4430"/>
+              <!-- Olhos e Sorriso -->
+              <circle cx="53" cy="50" r="2.5" fill="#1E1E1E"/>
+              <circle cx="71" cy="50" r="2.5" fill="#1E1E1E"/>
+              <path d="M 51 64 Q 62 75 73 64 Z" fill="#FFFFFF" stroke="#3B1F16" stroke-width="1.2"/>
+
+              <!-- Blusa branca de alcinha -->
+              <path d="M 22 118 Q 62 96 102 118 L 114 208 L 10 208 Z" fill="#F5F1E8" stroke="#1E1E1E" stroke-width="1.8"/>
+              <line x1="38" y1="95" x2="35" y2="115" stroke="#F5F1E8" stroke-width="3"/>
+              <line x1="86" y1="95" x2="89" y2="115" stroke="#F5F1E8" stroke-width="3"/>
+            </g>
+
+            <!-- Lower Third da TV Ufes (DANIELLA CAMILO - Estudante de Jornalismo) -->
+            <g transform="translate(225, 58)">
+              <text x="0" y="0" font-family="Inter, sans-serif" font-weight="800" font-size="13" fill="#B83232" stroke="#FFFFFF" stroke-width="0.4">DANIELLA CAMILO</text>
+              <text x="0" y="14" font-family="Inter, sans-serif" font-weight="600" font-size="10" fill="#2C261E">Estudante de Jornalismo</text>
+            </g>
+
+            <!-- Janela de Intérprete de Libras no canto inferior direito -->
+            <g transform="translate(298, 162)">
+              <rect width="74" height="70" fill="#E9ECEF" stroke="#1E1E1E" stroke-width="1.8"/>
+              <circle cx="37" cy="22" r="10" fill="#B5836B"/>
+              <path d="M 20 38 L 54 38 L 58 70 L 16 70 Z" fill="#C92A2A"/>
+              <circle cx="62" cy="58" r="7" fill="#D94E4E"/>
+              <text x="55" y="60" font-family="sans-serif" font-size="5" fill="#FFF" font-weight="bold">tvufes</text>
+            </g>
+          </svg>
+        </div>
+      `,
+
+      // Foto 5 (Página 5): Entrevista na TV Ufes com pesquisador, monitor com mapa do Brasil ("insustentável") e cinegrafista
+      projetos: `
+        <div class="w-full h-full relative bg-[#F2F4F7] overflow-hidden flex items-center justify-center">
+          <svg viewBox="0 0 400 250" class="w-full h-full">
+            <!-- Sala / Redação com persiana -->
+            <rect width="400" height="250" fill="#E8ECEF"/>
+            <rect x="25" y="10" width="310" height="125" fill="#F8F9FA" stroke="#ADB5BD" stroke-width="2"/>
+            <!-- Nomes escritos no quadro/vidro -->
+            <text x="55" y="28" font-family="Space Mono, monospace" font-size="9" fill="#D94E4E" opacity="0.65">LUCAS   DAVID   ANDREI   BETO</text>
+
+            <!-- Monitor com Mapa do Brasil e painel lateral ("insustentável") -->
+            <g transform="translate(68, 72)">
+              <rect x="0" y="0" width="118" height="76" rx="2" fill="#1E1E1E"/>
+              <rect x="4" y="4" width="110" height="68" fill="#1C7ED6"/>
+              <!-- Silhueta simplificada do Mapa do Brasil -->
+              <polygon points="32,16 54,18 66,32 56,56 42,62 34,44 22,34" fill="#DEE2E6"/>
+              <!-- Barra lateral azul-escura com palavras-chave -->
+              <rect x="74" y="4" width="40" height="68" fill="#183153"/>
+              <text x="77" y="14" font-family="sans-serif" font-size="5.5" fill="#F28B30" font-weight="bold">insustentável</text>
+              <text x="77" y="23" font-family="sans-serif" font-size="4.5" fill="#FFF">racismo</text>
+              <text x="77" y="30" font-family="sans-serif" font-size="4.5" fill="#FFF">consciência</text>
+              <text x="77" y="37" font-family="sans-serif" font-size="4.5" fill="#FFF">mulheres</text>
+            </g>
+
+            <!-- Placa Wi-Fi na parede -->
+            <rect x="196" y="96" width="22" height="26" rx="2" fill="#FFF" stroke="#1E1E1E" stroke-width="1.2"/>
+            <text x="199" y="118" font-family="sans-serif" font-size="6" font-weight="bold" fill="#1E1E1E">Wi Fi</text>
+
+            <!-- Mesa Branca -->
+            <rect x="15" y="182" width="250" height="68" fill="#FFFFFF" stroke="#CED4DA" stroke-width="2"/>
+
+            <!-- Entrevistado à esquerda (Camisa vermelha e óculos) -->
+            <g transform="translate(22, 92)">
+              <circle cx="38" cy="26" r="16" fill="#D9A78B"/>
+              <rect x="44" y="21" width="9" height="6" fill="none" stroke="#1E1E1E" stroke-width="1.5"/>
+              <path d="M 10 56 Q 38 42 66 56 L 78 148 L 4 148 Z" fill="#E03131" stroke="#1E1E1E" stroke-width="1.5"/>
+            </g>
+
+            <!-- Daniella Camilo segurando microfone TV Ufes -->
+            <g transform="translate(185, 118)">
+              <circle cx="42" cy="24" r="15" fill="#5C3826"/>
+              <path d="M 18 52 Q 42 40 66 52 L 74 132 L 10 132 Z" fill="#1E1E1E"/>
+              <!-- Braço estendido com microfone -->
+              <line x1="25" y1="62" x2="-35" y2="32" stroke="#5C3826" stroke-width="8" stroke-linecap="round"/>
+              <rect x="-56" y="18" width="22" height="12" rx="2" transform="rotate(20 -56 18)" fill="#F5F1E8" stroke="#1E1E1E" stroke-width="1.2"/>
+              <circle cx="-60" cy="21" r="7" fill="#2B2D42"/>
+            </g>
+
+            <!-- Cinegrafista à direita (Camiseta amarela, fones de ouvido e câmera) -->
+            <g transform="translate(262, 62)">
+              <circle cx="52" cy="30" r="17" fill="#E0B193"/>
+              <!-- Fones de ouvido -->
+              <rect x="44" y="22" width="11" height="16" rx="4" fill="#1E1E1E"/>
+              <path d="M 38 14 Q 52 2 64 18" fill="none" stroke="#1E1E1E" stroke-width="3"/>
+              <!-- Camiseta amarela -->
+              <path d="M 22 62 Q 55 46 95 62 L 112 188 L 16 188 Z" fill="#F2D15B" stroke="#1E1E1E" stroke-width="1.5"/>
+              <!-- Câmera de TV -->
+              <rect x="-18" y="34" width="46" height="26" rx="3" fill="#212529" stroke="#1E1E1E" stroke-width="1.5"/>
+              <polygon points="-18,38 -32,32 -32,62 -18,56" fill="#343A40"/>
+            </g>
+          </svg>
+        </div>
+      `
+    };
+
+    /**
+     * ============================================================================
+     * 3. GERENCIAMENTO DE FOTOS (LOCALSTORAGE + RENDERIZAÇÃO NAS MOLDURAS)
+     * ============================================================================
+     */
+    const STORAGE_KEY = "daniella_camilo_portfolio_photos_v1";
+    let customPhotos = {};
+    let currentUploadTargetKey = null;
+
+    function loadSavedPhotos() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) customPhotos = JSON.parse(raw);
+      } catch (e) {
+        customPhotos = {};
+      }
+    }
+
+    function savePhotosToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(customPhotos));
+      } catch (e) {
+        // Fallback caso a imagem exceda a cota do localStorage (permanece ativa na sessão atual)
+      }
+    }
+
+    function renderAllPhotoSlots() {
+      // 1. Slot Interesses (Página 2)
+      const intContainer = document.getElementById("slot-interesses-visual");
+      if (customPhotos.interesses) {
+        intContainer.innerHTML = `
+          <img src="${customPhotos.interesses}" alt="Colagem de interesses de Daniella Camilo" class="w-full h-full object-cover" />
+        `;
+      } else {
+        intContainer.innerHTML = defaultVisualIllustrations.interesses;
+      }
+
+      // 2. Slot Formação (Página 3)
+      const formContainer = document.getElementById("slot-formacao-visual");
+      if (customPhotos.formacao) {
+        formContainer.innerHTML = `
+          <img src="${customPhotos.formacao}" alt="Formação - Cena retrô no computador" class="w-full h-full object-cover" />
+        `;
+      } else {
+        formContainer.innerHTML = defaultVisualIllustrations.formacao;
+      }
+
+      // 3. Slot Trajetória (Página 4)
+      const trajContainer = document.getElementById("slot-trajetoria-visual");
+      if (customPhotos.trajetoria) {
+        trajContainer.innerHTML = `
+          <img src="${customPhotos.trajetoria}" alt="Daniella Camilo na TV Ufes" class="w-full h-full object-cover" />
+        `;
+      } else {
+        trajContainer.innerHTML = defaultVisualIllustrations.trajetoria;
+      }
+
+      // 4. Slot Projetos (Página 5)
+      const projContainer = document.getElementById("slot-projetos-visual");
+      if (customPhotos.projetos) {
+        projContainer.innerHTML = `
+          <img src="${customPhotos.projetos}" alt="Daniella Camilo entrevistando pesquisador na TV Ufes" class="w-full h-full object-cover" />
+        `;
+      } else {
+        projContainer.innerHTML = defaultVisualIllustrations.projetos;
+      }
+
+      // Atualiza também o modal gerenciador de fotos se estiver aberto
+      renderPhotoManagerList();
+    }
+
+    /**
+     * Interatividade sutil na tela limpa do monitor CRT ao clicar
+     */
+    function setupCrtScreenInteraction() {
+      const monitorSvg = document.getElementById("crt-monitor-svg");
+      const primaryText = document.getElementById("crt-screen-primary-text");
+      const secondaryText = document.getElementById("crt-screen-secondary-text");
+      const powerLed = document.getElementById("crt-power-led");
+      if (!monitorSvg || !primaryText || !secondaryText) return;
+
+      const screenStates = [
+        { primary: "こんにちはイム悲しい", secondary: "", led: "#5299A3" },
+        { primary: "こんにちはイム悲しい", secondary: "> DANIELLA_OS READY_", led: "#F28B30" },
+        { primary: "JORNALISMO + FRONT-END", secondary: "> SYSTEM STATUS: 100% OK", led: "#5299A3" }
+      ];
+      let stateIdx = 0;
+
+      monitorSvg.addEventListener("click", () => {
+        stateIdx = (stateIdx + 1) % screenStates.length;
+        const current = screenStates[stateIdx];
+        primaryText.textContent = current.primary;
+        secondaryText.textContent = current.secondary;
+        secondaryText.setAttribute("opacity", current.secondary ? "0.95" : "0");
+        if (powerLed) powerLed.setAttribute("fill", current.led);
+      });
+    }
+
+    function renderPhotoManagerList() {
+      const listEl = document.getElementById("photo-slots-list");
+      if (!listEl) return;
+
+      listEl.innerHTML = pdfContent.photoSlotsMeta
+        .map((slot) => {
+          const hasCustom = Boolean(customPhotos[slot.key]);
+          return `
+            <div class="border-2 border-inkDark bg-beigeLight/50 rounded-lg p-3.5 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <span class="font-mono text-[11px] font-bold text-indigoRetro uppercase">${slot.page}</span>
+                  <span class="font-mono text-[10px] px-2 py-0.5 border border-inkDark rounded font-bold ${
+                    hasCustom ? "bg-tealRetro text-inkDark" : "bg-offWhite text-brownDark"
+                  }">
+                    ${hasCustom ? "FOTO CARREGADA" : "ILUSTRAÇÃO PADRÃO"}
+                  </span>
+                </div>
+                <p class="font-sans text-xs text-inkDark leading-snug">${slot.label}</p>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  type="button"
+                  onclick="triggerSinglePhotoUpload('${slot.key}')"
+                  class="retro-btn bg-indigoRetro text-offWhite font-mono font-bold text-[11px] px-3 py-1.5 rounded uppercase flex-grow text-center"
+                >
+                  ${hasCustom ? "Substituir Imagem" : "Selecionar Arquivo"}
+                </button>
+                ${
+                  hasCustom
+                    ? `<button type="button" onclick="removeSinglePhoto('${slot.key}')" class="retro-btn bg-orangeRetro text-inkDark font-mono font-bold text-[11px] px-2.5 py-1.5 rounded uppercase" title="Remover foto carregada">X</button>`
+                    : ""
+                }
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+    }
+
+    function removeSinglePhoto(slotKey) {
+      delete customPhotos[slotKey];
+      savePhotosToStorage();
+      renderAllPhotoSlots();
+    }
+
+    function triggerSinglePhotoUpload(slotKey) {
+      const fileInput = document.getElementById("single-photo-input");
+      if (!fileInput) return;
+      currentUploadTargetKey = slotKey;
+      fileInput.value = "";
+      fileInput.click();
+    }
+
+    function setupPhotoUploader() {
+      const fileInput = document.getElementById("single-photo-input");
+      if (!fileInput) return;
+
+      document.querySelectorAll("[data-upload-slot]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const slotKey = btn.getAttribute("data-upload-slot");
+          triggerSinglePhotoUpload(slotKey);
+        });
+      });
+
+      fileInput.addEventListener("change", (event) => {
+        const file = event.target.files && event.target.files[0];
+        if (!file || !currentUploadTargetKey) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          customPhotos[currentUploadTargetKey] = e.target.result;
+          savePhotosToStorage();
+          renderAllPhotoSlots();
+          currentUploadTargetKey = null;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    /**
+     * ============================================================================
+     * 4. RENDERIZAÇÃO DAS SEÇÕES DINÂMICAS (TRAJETÓRIA, PROJETOS E MOTIVAÇÕES)
+     * ============================================================================
+     */
+    let activeTrajetoriaId = pdfContent.trajetoria[0].id;
+
+    function renderTrajetoriaSection() {
+      const listEl = document.getElementById("trajetoria-list");
+      const detailHeader = document.getElementById("trajetoria-detail-header");
+      const detailBody = document.getElementById("trajetoria-detail-body");
+
+      listEl.innerHTML = pdfContent.trajetoria
+        .map((item, idx) => {
+          const isSelected = item.id === activeTrajetoriaId;
+          return `
+            <button
+              type="button"
+              data-traj-id="${item.id}"
+              class="retro-btn text-left p-3.5 rounded-lg flex flex-col justify-between gap-2 transition-all ${
+                isSelected
+                  ? "bg-indigoRetro text-offWhite"
+                  : "bg-offWhite text-inkDark hover:bg-beigeLight"
+              }"
+            >
+              <div class="flex items-center justify-between w-full">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 border border-inkDark rounded ${item.badgeColor}">
+                  ${item.tag}
+                </span>
+                <span class="font-mono text-[11px] opacity-75">0${idx + 1}</span>
+              </div>
+              <span class="font-sans font-bold text-sm sm:text-base leading-snug">
+                ${item.title}
+              </span>
+            </button>
+          `;
+        })
+        .join("");
+
+      listEl.querySelectorAll("[data-traj-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeTrajetoriaId = btn.getAttribute("data-traj-id");
+          renderTrajetoriaSection();
+        });
+      });
+
+      const current = pdfContent.trajetoria.find((t) => t.id === activeTrajetoriaId) || pdfContent.trajetoria[0];
+      detailHeader.textContent = `${current.title.toUpperCase()} // ${current.period.toUpperCase()}`;
+      detailBody.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h3 class="title-condensed text-2xl sm:text-3xl text-indigoRetro">${current.title}</h3>
+          <span class="font-mono text-xs font-bold bg-beigeBg border border-inkDark px-2.5 py-0.5 rounded">${current.tag}</span>
+        </div>
+        <p class="font-sans text-sm sm:text-base text-brownDark leading-relaxed">
+          ${current.description}
+        </p>
+      `;
+    }
+
+    function renderMotivacoesSection() {
+      const grid = document.getElementById("motivacoes-grid");
+      grid.innerHTML = pdfContent.motivacoesPilares
+        .map(
+          (pilar, i) => `
+          <article class="retro-box retro-box-hover bg-offWhite rounded-lg overflow-hidden flex flex-col justify-between">
+            <div class="${pilar.color} border-b-2 border-inkDark px-3.5 py-2 flex items-center justify-between">
+              <span class="font-mono text-xs font-bold">PILAR_0${i + 1}</span>
+              <span class="text-base">${pilar.icon}</span>
+            </div>
+            <div class="p-4 space-y-2">
+              <h4 class="title-condensed text-2xl text-inkDark tracking-wide">${pilar.title}</h4>
+              <p class="font-sans text-xs sm:text-sm text-brownDark leading-relaxed">${pilar.desc}</p>
+            </div>
+          </article>
+        `
+        )
+        .join("");
+    }
+
+    /**
+     * ============================================================================
+     * 5. MODAIS, BUSCA NAVEGADOR RETRÔ E SCROLL SPY
+     * ============================================================================
+     */
+    function setupModals() {
+      // Gerenciador de Fotos
+      const photoModal = document.getElementById("photo-manager-modal");
+      const openPhotoBtns = [
+        document.getElementById("open-photo-manager-btn"),
+        document.getElementById("open-photo-manager-btn-footer")
+      ];
+      openPhotoBtns.forEach((btn) => {
+        if (btn) {
+          btn.addEventListener("click", () => {
+            renderPhotoManagerList();
+            photoModal.classList.remove("hidden");
+            photoModal.classList.add("flex");
+          });
+        }
+      });
+
+      const closePhotoModal = () => {
+        photoModal.classList.add("hidden");
+        photoModal.classList.remove("flex");
+      };
+
+      document.getElementById("close-photo-manager-btn").addEventListener("click", closePhotoModal);
+      document.getElementById("done-photo-manager-btn").addEventListener("click", closePhotoModal);
+      photoModal.addEventListener("click", (e) => {
+        if (e.target === photoModal) closePhotoModal();
+      });
+
+      document.getElementById("reset-all-photos-btn").addEventListener("click", () => {
+        customPhotos = {};
+        savePhotosToStorage();
+        renderAllPhotoSlots();
+      });
+
+      // Modal de Detalhes dos Projetos
+      const projModal = document.getElementById("project-detail-modal");
+      const projHeader = document.getElementById("project-modal-header");
+      const projBody = document.getElementById("project-modal-body");
+
+      document.querySelectorAll("[data-project-modal]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const key = btn.getAttribute("data-project-modal");
+          const data = pdfContent.projetosDetalhes[key];
+          if (!data) return;
+
+          projHeader.textContent = data.header;
+          projBody.innerHTML = `
+            <span class="inline-block font-mono text-xs font-bold bg-orangeRetro text-inkDark border border-inkDark px-2.5 py-0.5 rounded">
+              ${data.category}
+            </span>
+            <h3 class="title-condensed text-3xl text-indigoRetro">${data.title}</h3>
+            <p class="font-sans text-sm sm:text-base text-inkDark leading-relaxed bg-beigeLight/60 border-2 border-inkDark p-4 rounded">
+              ${data.summary}
+            </p>
+            <div class="space-y-2">
+              <h4 class="font-mono text-xs font-bold uppercase text-indigoRetro">> Destaques do Projeto:</h4>
+              <ul class="space-y-1.5">
+                ${data.highlights
+                  .map(
+                    (h) => `
+                    <li class="flex items-start gap-2 font-sans text-sm text-brownDark">
+                      <span class="font-mono font-bold text-indigoRetro">■</span>
+                      <span>${h}</span>
+                    </li>
+                  `
+                  )
+                  .join("")}
+              </ul>
+            </div>
+          `;
+
+          projModal.classList.remove("hidden");
+          projModal.classList.add("flex");
+        });
+      });
+
+      const closeProjModal = () => {
+        projModal.classList.add("hidden");
+        projModal.classList.remove("flex");
+      };
+
+      document.getElementById("close-project-modal-btn").addEventListener("click", closeProjModal);
+      projModal.addEventListener("click", (e) => {
+        if (e.target === projModal) closeProjModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closePhotoModal();
+          closeProjModal();
+        }
+      });
+    }
+
+    function setupRetroBrowserSearch() {
+      const form = document.getElementById("retro-search-form");
+      const input = document.getElementById("retro-search-input");
+      const clearBtn = document.getElementById("search-clear-btn");
+      const feedback = document.getElementById("search-feedback");
+      const feedbackText = document.getElementById("search-feedback-text");
+      const jumpBtn = document.getElementById("search-jump-btn");
+
+      const keywordMap = [
+        { keys: ["intro", "inicio", "início", "daniella"], target: "introducao", label: "Introdução" },
+        { keys: ["interesse", "moda", "musica", "música", "mangueira", "flamengo", "blog", "novela"], target: "interesses", label: "Interesses" },
+        { keys: ["formacao", "formação", "ufes", "jornalismo", "veiga", "almeida", "ads", "sistemas"], target: "formacao", label: "Formação" },
+        { keys: ["trajetoria", "trajetória", "mprj", "pretalab", "generation", "tv justica", "tv justiça", "cx", "software"], target: "trajetoria", label: "Trajetória Profissional" },
+        { keys: ["projeto", "rap", "bariatrica", "bariátrica", "reportagem"], target: "projetos", label: "Projetos" },
+        { keys: ["motivacao", "motivação", "motivações", "diversidade", "mentoria", "pluralidade", "cultura"], target: "motivacoes", label: "Motivações" }
+      ];
+
+      let detectedTarget = "interesses";
+
+      input.addEventListener("focus", () => {
+        if (input.value === "WWW.DANIELLACAMILO.DEV") {
+          input.select();
+        }
+      });
+
+      input.addEventListener("input", () => {
+        const val = input.value.trim().toLowerCase();
+        if (!val || val === "www.daniellacamilo.dev") {
+          feedback.classList.add("hidden");
+          return;
+        }
+
+        const match = keywordMap.find((entry) => entry.keys.some((k) => val.includes(k)));
+        feedback.classList.remove("hidden");
+        if (match) {
+          detectedTarget = match.target;
+          feedbackText.textContent = `Seção encontrada: ${match.label}`;
+        } else {
+          detectedTarget = "trajetoria";
+          feedbackText.textContent = `Pesquisar "${input.value}" no portfólio`;
+        }
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const val = input.value.trim().toLowerCase();
+        if (!val || val === "www.daniellacamilo.dev") {
+          document.getElementById("interesses").scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+        document.getElementById(detectedTarget).scrollIntoView({ behavior: "smooth" });
+      });
+
+      jumpBtn.addEventListener("click", () => {
+        document.getElementById(detectedTarget).scrollIntoView({ behavior: "smooth" });
+      });
+
+      clearBtn.addEventListener("click", () => {
+        input.value = "WWW.DANIELLACAMILO.DEV";
+        feedback.classList.add("hidden");
+      });
+    }
+
+    function setupNavigationAndScrollSpy() {
+      document.querySelectorAll("[data-nav]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-nav");
+          document.getElementById(target).scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      document.querySelectorAll(".side-dot").forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const target = dot.getAttribute("data-target");
+          document.getElementById(target).scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      const sectionOrder = ["introducao", "interesses", "formacao", "trajetoria", "projetos", "motivacoes"];
+      const sectionLabels = {
+        introducao: "INTRODUÇÃO",
+        interesses: "01. INTERESSES",
+        formacao: "02. FORMAÇÃO",
+        trajetoria: "03. TRAJETÓRIA",
+        projetos: "04. PROJETOS",
+        motivacoes: "05. MOTIVAÇÕES"
+      };
+
+      const dots = document.querySelectorAll(".side-dot");
+      const navPills = document.querySelectorAll(".nav-pill");
+      const indicator = document.getElementById("active-section-indicator");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              const id = entry.target.id;
+              if (sectionLabels[id]) {
+                indicator.textContent = `SEÇÃO ATIVA: ${sectionLabels[id]}`;
+              }
+
+              const activeIdx = sectionOrder.indexOf(id);
+              if (activeIdx !== -1) {
+                dots.forEach((dot, idx) => {
+                  if (idx === activeIdx) {
+                    dot.className =
+                      "side-dot w-5 h-5 rounded-full border-2 border-inkDark transition-all duration-300 bg-indigoRetro scale-125 shadow-retro-sm";
+                  } else {
+                    const opacities = ["bg-indigoRetro/80", "bg-indigoRetro/65", "bg-indigoRetro/50", "bg-indigoRetro/40", "bg-indigoRetro/30", "bg-indigoRetro/20"];
+                    dot.className = `side-dot w-5 h-5 rounded-full border-2 border-inkDark/45 transition-all duration-300 ${opacities[idx]} hover:scale-110`;
+                  }
+                });
+
+                navPills.forEach((pill) => {
+                  if (pill.getAttribute("data-nav") === id) {
+                    pill.classList.remove("bg-offWhite", "text-inkDark");
+                    pill.classList.add("bg-indigoRetro", "text-offWhite");
+                  } else {
+                    pill.classList.add("bg-offWhite", "text-inkDark");
+                    pill.classList.remove("bg-indigoRetro", "text-offWhite");
+                  }
+                });
+              }
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      document.querySelectorAll("section").forEach((sec) => observer.observe(sec));
+    }
+
+    function startClock() {
+      const clockEl = document.getElementById("os-clock");
+      const tick = () => {
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2, "0");
+        const mm = String(now.getMinutes()).padStart(2, "0");
+        clockEl.textContent = `SYS // ${hh}:${mm}`;
+      };
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadSavedPhotos();
+      renderAllPhotoSlots();
+      renderTrajetoriaSection();
+      renderMotivacoesSection();
+      setupCrtScreenInteraction();
+      setupPhotoUploader();
+      setupModals();
+      setupRetroBrowserSearch();
+      setupNavigationAndScrollSpy();
+      startClock();
+    });
+  </script>
+</body>
+</html>
